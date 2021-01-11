@@ -6,7 +6,7 @@ bool LoadImage(std::string file_name, cv::Mat &image)
     if (image.empty() || !image.data)
         return false;
 
-    cv::cvtColor(image, image, CV_BGR2RGB);
+    cv::cvtColor(image, image, cv::COLOR_BGR2RGB);
     std::cout << "== image size: " << image.size() << " ==" << std::endl;
 
     // scale image to fit
@@ -127,7 +127,7 @@ cv::Mat QImageToMat(QImage image)
         break;
     case QImage::Format_RGB888:
         mat = cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
-        cv::cvtColor(mat, mat, CV_BGR2RGB);
+        cv::cvtColor(mat, mat, cv::COLOR_BGR2RGB);
         break;
     case QImage::Format_Grayscale8:
         mat = cv::Mat(image.height(), image.width(), CV_8UC1, (void*)image.constBits(), image.bytesPerLine());
@@ -140,9 +140,9 @@ QImage MatToQImage(cv::Mat InputMat)
 {
     cv::Mat TmpMat;
     if (InputMat.channels() == 1)
-        cv::cvtColor(InputMat, TmpMat, CV_GRAY2RGB);
+        cv::cvtColor(InputMat, TmpMat, cv::COLOR_GRAY2RGB);
     else
-        cv::cvtColor(InputMat, TmpMat, CV_BGR2RGB);
+        cv::cvtColor(InputMat, TmpMat, cv::COLOR_BGR2RGB);
 
     QImage Result = QImage((const uchar*)(TmpMat.data), TmpMat.cols, TmpMat.rows, QImage::Format_RGB888);
     Result.bits();
@@ -177,7 +177,7 @@ int detectResult(QImage& qimg)
     std::cout << "== output slice:\n";
     std::cout << output.slice(/*dim=*/1, /*start=*/0, /*end=*/5) << '\n';
 
-    cv::Mat result = imgClassifier("resnet50.pt", "label.txt", "shark.jpg", device);//¿ÉÒÔ×ÔÐÐÉèÖÃ²âÊÔÍ¼Æ¬ºÍÄ£ÐÍ
+    cv::Mat result = imgClassifier("resnet50.pt", "label.txt", "shark.jpg", device);//å¯ä»¥è‡ªè¡Œè®¾ç½®æµ‹è¯•å›¾ç‰‡å’Œæ¨¡åž‹
     qimg = MatToQImage(result);
     return 0;
 }

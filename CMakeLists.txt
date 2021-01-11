@@ -6,9 +6,9 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(Torch_DIR D:/libtorch140/share/cmake/Torch)
-set(OpenCV_DIR D:/openCV341_msvc/x64/vc15/lib)
-set(CMAKE_PREFIX_PATH D:/Qt595/5.10.0/msvc2017_64)
+set(Torch_DIR E:/PyTorch/libtorch/share/cmake/Torch)
+set(OpenCV_DIR E:/PyTorch/opencv/build/cmake)
+set(CMAKE_PREFIX_PATH D:/QT/5.15.2/msvc2019_64)
 
 find_package(Torch REQUIRED)
 find_package(OpenCV REQUIRED)
